@@ -1,11 +1,29 @@
-x = 0
-y = -1
+import csv
+import json
 
-if x > 0 and y > 0:
-    print("Первая четверть")
-elif x > 0 and y < 0:
-    print("Четвертая четверть")
-elif x < 0 and y > 0:
-    print("Вторая четверть")
-else:  # x < 0 and y < 0
-    print("Третья четверть")
+INPUT_FILENAME = "input.csv"
+OUTPUT_FILENAME = "output.json"
+
+
+def task() -> None:
+    data = []
+
+    # Читаем CSV файл
+    with open(INPUT_FILENAME, mode='r', encoding='utf-8') as csvfile:
+        reader = csv.reader(csvfile, delimiter=',')
+        headers = next(reader)  
+
+        for row in reader:
+            row_dict = dict(zip(headers, row))
+            data.append(row_dict)
+
+    with open(OUTPUT_FILENAME, mode='w', encoding='utf-8') as jsonfile:
+        json.dump(data, jsonfile, indent=4, ensure_ascii=False)
+
+
+if __name__ == '__main__':
+    task()
+
+    with open(OUTPUT_FILENAME, encoding='utf-8') as output_f:
+        for line in output_f:
+            print(line, end="")
