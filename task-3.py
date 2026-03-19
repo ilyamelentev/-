@@ -1,5 +1,11 @@
-product = 1
-for i in range(1, 11):
-    product *= i
+x = 0
+y = -1
 
-print(product)
+if x > 0 and y > 0:
+    print("Первая четверть")
+elif x > 0 and y < 0:
+    print("Четвертая четверть")
+elif x < 0 and y > 0:
+    print("Вторая четверть")
+else:  # x < 0 and y < 0
+    print("Третья четверть")
